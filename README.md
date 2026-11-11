@@ -111,9 +111,10 @@ py -3.14 -m venv .venv
 本项目在三模型对比、参数优化和最终报告阶段使用Codex,主要用于代码生成和文字润色、扩写。特征工程、模型优化思路以及主要结果分析均由作者独立完成。
 
 ## 参考文献
-[1]:https://www.kaggle.com/code/devsurakshitkapoor/credit-risk-pd-model-auc-0-80-recall-89?scriptVersionId=317703275
-[2]:https://www.kaggle.com/learn/intro-to-machine-learning
-[3]:https://www.kaggle.com/learn/intermediate-machine-learning
-[4]:https://blog.csdn.net/weixin_40139561/article/details/108588137
-[5]:https://blog.csdn.net/qq_31367861/article/details/111145816
-[6]:https://scikit-learn.org/stable/supervised_learning.html
+1. [Kaggle - Credit Risk PD Model | AUC 0.80 | Recall 89%](https://kaggle.com)
+2. [Kaggle - Intro to Machine Learning](https://www.kaggle.com/learn/intro-to-machine-learning)
+3. [Kaggle - Intermediate Machine Learning](https://www.kaggle.com/learn/intermediate-machine-learning)
+4. [CSDN博客 - 信用风险评分卡模型搭建(附代码)](https://csdn.net)
+5. [CSDN博客 - 评分卡模型(Credit Risk Scorecard)简介](https://blog.csdn.net/qq_31367861/article/details/111145816)
+6. [Scikit-learn - Supervised Learning](https://scikit-learn.org/stable/supervised_learning.html)
+
