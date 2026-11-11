@@ -106,3 +106,14 @@ py -3.14 -m venv .venv
 主 notebook 会向上查找项目数据路径。部分早期实验仍含 `D:/credit` 绝对路径或相对于 `code/` 的输入路径；它们是历史实验，不是推荐的跨机器运行入口。此轮未为整理文件而修改其模型逻辑。
 
 `code/model/` 中的自定义变换模块和报告模板必须随项目保留；不能只复制单个 notebook 作为完整项目。
+
+## AI工具使用说明
+本项目在三模型对比、参数优化和最终报告阶段使用Codex,主要用于代码生成和文字润色、扩写。特征工程、模型优化思路以及主要结果分析均由作者独立完成。
+
+## 参考文献
+[1]:https://www.kaggle.com/code/devsurakshitkapoor/credit-risk-pd-model-auc-0-80-recall-89?scriptVersionId=317703275
+[2]:https://www.kaggle.com/learn/intro-to-machine-learning
+[3]:https://www.kaggle.com/learn/intermediate-machine-learning
+[4]:https://blog.csdn.net/weixin_40139561/article/details/108588137
+[5]:https://blog.csdn.net/qq_31367861/article/details/111145816
+[6]:https://scikit-learn.org/stable/supervised_learning.html
