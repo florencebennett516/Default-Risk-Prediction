@@ -1,34 +1,36 @@
-# 本地数据与重放输入
+# 本地数据与运行输入
 
-## 当前文件
+## GitHub 发布边界
 
-以下文件在本次整理中保留原位，内容不变，不随 GitHub 导出包公开：
+**GitHub 版本仅保留本说明，不提供原始贷款数据、清洗快照、特征矩阵、已训练模型和逐笔预测。** 本地旧分支或工作目录可能仍保留历史数据文件，本次只发布文档更新，不将这些文件或其旧提交重新推送到远端。
 
-| 路径 | 内容 |
-| --- | --- |
-| `data/credit_data(1).csv` | 原始贷款记录 |
-| `data/data_processing.csv` | 已保存的清洗数据快照 |
-| `data/xgboost_features/train.parquet` | 早期实验的训练特征 |
-| `data/xgboost_features/val.parquet` | 早期实验的验证特征 |
-| `data/xgboost_features/test.parquet` | 早期实验的测试特征 |
-| `data/xgboost_features/metadata.json` | 早期特征矩阵元信息 |
+以下是代码的本地路径约定，不是仓库交付清单：
 
-保留现有文件层级，是为了不改变主 notebook、历史实验及模型的路径约定。此目录除本说明外全部默认忽略；不会把数据搬动后留下失效的运行入口。
+| 路径 | 内容 | 用途 |
+| --- | --- | --- |
+| `data/credit_data(1).csv` | 原始贷款记录 | 最终流程清洗、训练及重放所需 |
+| `data/data_processing.csv` | 清洗数据快照 | 最终流程一致性核对所需 |
+| `data/xgboost_features/train.parquet` | 历史实验训练特征 | 非最终模型的完整运行输入 |
+| `data/xgboost_features/val.parquet` | 历史实验验证特征 | 非最终模型的完整运行输入 |
+| `data/xgboost_features/test.parquet` | 历史实验测试特征 | 非最终模型的完整运行输入 |
+| `data/xgboost_features/metadata.json` | 历史特征元信息 | 需与相应实验版本配套 |
+
+保留本地路径约定，不移动用户数据。`.gitignore` 不会自动取消对旧分支已跟踪文件的跟踪；发布应以远端已清理数据的版本为基底，而不是推送含数据的本地旧历史。
 
 ## 数据来源与使用条件
 
-项目中保留了实习任务材料和数据字典，参见 `docs/计划/`。本次没有核实原始数据下载渠道、完整授权条款或再分发许可，不提供猜测下载地址。请通过原项目合法渠道获取相应数据，确认使用条件后按上表放置。
-
-贷款记录含收入、信用及贷款信息，不应仅凭字段已编码就认定可以公开。导出包不包含原始贷款记录、处理数据、逐笔预测和样本分配。
+项目任务材料和数据字典见 `docs/计划/`。本次未核实完整授权条款或再分发许可，输入需通过原项目合法渠道取得。贷款记录及其衍生特征含收入、信用和贷款信息，编码或特征化不等于获得再分发许可。
 
 ## 默认模型重放所需输入
 
-`code/main_pipelin.ipynb` 的 `RUN_TRAINING=False` 除上述两个 CSV 外，还依赖本地 `results/xgboost_optimization/` 中的已有模型与结果，例如：
+`code/main_pipelin.ipynb` 的 `RUN_TRAINING=False` 除上述两个 CSV 外，还依赖本地 `results/xgboost_optimization/` 中的同版本模型与结果。该路径是代码输入约定，不表示仓库提供了相应文件：
 
 - `final_model.joblib`：已训练模型及自定义预处理对象。
-- `validation_predictions.csv`、`test_predictions.csv`：保存的逐笔预测，用于重放核对。
-- `sample_summary.csv`、`fold_summary.csv`、`best_parameters.csv`、`cv_summary.csv`、`validation_metrics.csv`、`final_features.csv` 等：与该轮模型对应的汇总证据。
+- `validation_predictions.csv`、`test_predictions.csv`：保存的逐笔预测。
+- `sample_summary.csv`、`fold_summary.csv`、`best_parameters.csv`、`cv_summary.csv`、`validation_metrics.csv`、`final_features.csv` 等：该轮模型对应的汇总文件。
 
-这不是独立数据包的完整授权交付清单。模型、数据、特征模块和预测必须来自同一版本，不要混用不同实验轮次。只有汇总结果而没有原始数据及模型时，可以阅读报告，但不能执行默认重放。
+模型、数据、特征模块和预测应来自同一轮实验。改为 `RUN_TRAINING=True` 仍需原始 CSV、清洗快照和完整依赖。运行清单由代码生成，本仓库不是完整授权数据包；仅加载可信本地模型。
 
-改为重新训练仍然需要合法获取数据和完整依赖，并会消耗较多计算资源。仅加载可信本地模型；原始输入和已训练模型的摘要可参照已有 `results/final_project/run_manifest.json`，其中的绝对路径和生成时间是原运行记录，不代表新机器路径。
+## 策略监控的数据补充
+
+现有标签为 `isDefault`，尚未计算 vintage 30+ / 60+ DPD。按放款月、同账龄监控逾期，需要补齐还款计划、实际还款、到期日、观察日及逾期天数，并固定成熟窗口和分母；详见[策略建议 memo](../docs/最终报告/策略建议memo.md)。
