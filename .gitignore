@@ -63,4 +63,8 @@ data/*.csv
 # 模型和缓存文件
 *.joblib
 *.pkl
-results/
+/results/*
+!/results/final_project/
+/results/final_project/*
+!/results/final_project/test_evaluation.png
+!/results/final_project/business_analysis.png
