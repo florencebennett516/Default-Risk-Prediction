@@ -1,0 +1,66 @@
+# Local environment, editor settings and credentials
+/venv/
+/.venv/
+/.vscode/
+/.idea/
+.env
+.env.*
+!.env.example
+*.pem
+*.key
+*.p12
+*.pfx
+
+# Python and notebook caches
+__pycache__/
+*.py[cod]
+.ipynb_checkpoints/
+.pytest_cache/
+.mypy_cache/
+.ruff_cache/
+
+# Local data: keep instructions, not loan records or feature matrices
+/data/**
+!/data/README.md
+
+# Trained models, intermediate arrays and search databases
+*.joblib
+*.pkl
+*.pickle
+*.ubj
+*.parquet
+*.npy
+*.npz
+*.sqlite
+*.sqlite3
+*.sqlite3-*
+*.db
+
+# Record-level predictions, assignments and large search tables
+**/*predictions*.csv
+**/split_assignment.csv
+**/*sample_indices.csv
+**/*sample_ids.csv
+**/*_ids.csv
+**/*threshold_search*.csv
+
+# Runtime state, generated upload archives and OS artifacts
+/tmp/
+/dist/
+*.log
+*.tmp
+*.bak
+~$*
+.DS_Store
+__MACOSX/
+Thumbs.db
+Desktop.ini
+
+# 数据集
+data/*.csv
+!data/README.md
+
+# 模型和缓存文件
+*.joblib
+*.pkl
+results/

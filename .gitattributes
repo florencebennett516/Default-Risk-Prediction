@@ -1,0 +1,18 @@
+* text=auto
+*.md text eol=lf
+*.py text eol=lf
+*.txt text eol=lf
+*.json text eol=lf
+*.ipynb text eol=lf
+*.html text eol=lf
+.gitignore text eol=lf
+.gitattributes text eol=lf
+*.png binary
+*.jpg binary
+*.pdf binary
+*.docx binary
+*.joblib binary
+*.parquet binary
+*.npy binary
+*.ubj binary
+*.sqlite3 binary
